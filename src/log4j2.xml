@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error">
+	<Properties>
+		<Property name="debug_log">logs/debug.log</Property>
+		<Property name="warning_log">logs/warning.log</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%msg%n" />
+			<Filters>
+				<ThresholdFilter level="info" />
+			</Filters>
+		</Console>
+		<File name="DebugFile" fileName="${debug_log}">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level: %msg%n" />
+			<Filters>
+				<ThresholdFilter level="debug" />
+			</Filters>
+		</File>
+		<File name="WarningFile" fileName="${warning_log}">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level: %msg%n" />
+			<Filters>
+				<ThresholdFilter level="warn" />
+			</Filters>
+		</File>
+	</Appenders>
+
+	<Loggers>
+		<Root level="trace">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="DebugFile" />
+			<AppenderRef ref="WarningFile" />
+		</Root>
+	</Loggers>
+</Configuration>
